@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "main.C": "cpp",
+        "vettore.C": "cpp",
+        "*.tcc": "cpp"
+    }
+}

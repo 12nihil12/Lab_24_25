@@ -1,6 +1,8 @@
 *.o 
 *.x
 *.txt
-/.vscode 
+/.vscode
+30_09/notes/*
+!toask.txt
 
 
