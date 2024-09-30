@@ -12,6 +12,9 @@ vec_doub::vec_doub(int N)
     if(N>0){
         dim=N; 
         ad = new double [dim]; 
+        for (int c=0; c< dim; c++){
+            ad[c]=0;
+        }
     } else {
         throw 1; // errorcode: dimension < 0
     }
@@ -21,7 +24,7 @@ vec_doub::vec_doub(const vec_doub& w){ //copy constructor
     dim=w.getdim();
     ad= new double [dim]; 
     for(int i=0; i < dim; i++){
-        setcomponent(i,w.getcomponent(i)); 
+        ad[i]=w[i]; 
     }
 }
 
@@ -44,20 +47,60 @@ vec_doub& vec_doub::operator=(const vec_doub& w){//assignment operator
     ad= new double[dim];
 
     for(int i=0; i < dim; i++){
-        setcomponent(i,w.getcomponent(i)); 
+        ad[i]=w[i]; 
+
     }
 
     return *this;
 } 
 
 double& vec_doub::operator[](int i){
-    if(i >0 || i < dim){
+    if(i >=0 && i < dim){
         return ad[i];
     } else{
         throw 2; // errorcode : index over range
     }
 }
 
+double & vec_doub::operator[](int i) const{
+    if(i >=0 && i < dim){
+        return ad[i];
+    } else{
+        throw 2; // errorcode : index over range
+    }
+} 
+
+bool vec_doub::operator==(const vec_doub & w)const {
+    if(dim != w.getdim()){
+        return false;
+    }
+    for(int i=0; i< dim; i++){
+        if(ad[i]!= w[i]){
+            return false;
+        }
+    }
+    return true; 
+    
+}
+
+
+//OTHER
+
+double vec_doub::norm() const{
+    double norm;
+    for(int i=0; i< dim; i++){
+        norm+=ad[i]*ad[i]; 
+    }
+    return sqrt(norm);
+} // returns norm of vector
+
+double vec_doub::norm(){
+    double norm;
+    for(int i=0; i< dim; i++){
+        norm+=ad[i]*ad[i]; 
+    }
+    return sqrt(norm);
+} // returns norm of vector
 
 
 
@@ -66,7 +109,7 @@ double& vec_doub::operator[](int i){
 
 
 
-
+/* 
 int vec_doub::setcomponent(int i,double el){
     if(i < 0 || i >= dim){
         throw 2; // errorcode : index over range
@@ -84,5 +127,5 @@ double vec_doub::getcomponent(int i) const {
         }
 }; // access to i component
 
-
+*/
 

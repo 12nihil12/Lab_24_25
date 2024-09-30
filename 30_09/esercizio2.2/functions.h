@@ -15,8 +15,8 @@ int loaddata(char * nomefile, vec_doub &v); // loads data from file to vec
 
 
 int posmin (vec_doub v, int i); //restituisce posizione elemento minimo array di (size) elementi a partire da i
-void swap(vec_doub v, int i, int j); // swap elementi double
-void order(vec_doub v);//ordinamento array double
+void swap(vec_doub & v, int i, int j); // swap elementi double
+void order(vec_doub & v);//ordinamento array double
 
 
 double mediana (vec_doub v);

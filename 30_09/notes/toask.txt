@@ -1,5 +1,4 @@
 HOW EXACTLY DOES v[i]=a WORK WITH OVERLOADED OPERATOR []!
 WHAT DOES this DO?
 CAN I MAKE DATA LOADING A METHOD OF VECTOR CLASS?
-EVEN OVERLOADING [] operator FOR const OBJECTS I STILL GET A COMPILATION ERROR: 
-    error: passing ‘const vec_doub’ as ‘this’ argument discards qualifiers [-fpermissive]
+

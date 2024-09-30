@@ -5,13 +5,13 @@ void print(char* nomefile, const vec_doub& v){
     ofstream fileout; 
     fileout.open(nomefile); 
     for(int c=0; c< v.getdim(); c++){
-        fileout << v.getcomponent(c) << endl;
+        fileout << v[c] << endl;
     }
     fileout.close();
 }
 void print( const vec_doub& v){
       for(int c=0; c< v.getdim(); c++){
-        cout << v.getcomponent(c) << endl;
+        cout << v[c] << endl;
     }
     
 }
@@ -47,7 +47,7 @@ int posmin (vec_doub v, int i){ //restituisce posizione elemento minimo array di
     return pmin; 
 }
 
-void swap(vec_doub v, int i, int j){ // swap elementi double
+void swap(vec_doub & v, int i, int j){ // swap elementi double
     if (i < 0 || i > v.getdim() || j < 0 || j > v.getdim()){
         cout << "Index out of range" << endl; 
         return; 
@@ -59,7 +59,7 @@ void swap(vec_doub v, int i, int j){ // swap elementi double
     return; 
 }
 
-void order(vec_doub v){ //ordinamento array double
+void order(vec_doub & v){ //ordinamento array double
     for (int k = 0; k < v.getdim() -1; k++){
         //cout << "k=" << k; 
         int min = posmin(v, k);
@@ -76,7 +76,7 @@ void order(vec_doub v){ //ordinamento array double
 
 double mediana (vec_doub v){
     order(v); 
-
+    print("1941_data_reorder.txt",v);
     if(v.getdim()%2==0){
         return (double)(v[v.getdim()/2 -1 ]+v[v.getdim()/2 ])/2;
     } else {
@@ -88,7 +88,7 @@ double media (const vec_doub & v){
 
     double conta = 0; 
     for( int c= 0; c < v.getdim(); c++){
-        conta= conta*c/(c+1) + v.getcomponent(c)/(c+1);
+        conta= conta*c/(c+1) + v[c]/(c+1);
     }
 
     return conta; 
@@ -101,7 +101,7 @@ double varianza (const vec_doub & v , double x) { // varianza (avendo gia` la me
     double scarto = 0;
 
      for( int c= 0; c < v.getdim(); c++){
-        scarto = scarto + pow((x - v.getcomponent(c)), 2); 
+        scarto = scarto + pow((x - v[c]), 2); 
     }
 
     return scarto/v.getdim(); 

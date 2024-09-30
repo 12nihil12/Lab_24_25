@@ -20,7 +20,9 @@ int main(int argc,char ** argv)
         cout << "Negative dimension of dataset is not allowed. Please enter valid dimension." << endl; 
         cin >> ndt; 
     }
-     
+
+    cout << "Dimension of dataset: " << ndt << endl; 
+    
     char * nomefile= argv[2];
     cout << "File name: " << nomefile << endl << endl; 
 
@@ -32,9 +34,6 @@ int main(int argc,char ** argv)
         cout << "FILE NOT FOUND. Exiting program" << endl; 
         return -1;
     }
-
-  
-    
     
     ofstream fileout; 
     fileout.open("Results.txt"); 
@@ -53,7 +52,7 @@ int main(int argc,char ** argv)
     //cout << "Array ordinato: " << endl << endl; 
 
    // print(v,ndt);
-    print("1941_data_reorder.txt",v);
+    
 
     
    return 0;
