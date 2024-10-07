@@ -1,0 +1,1 @@
+tar -cvf  esercizio2.2.tar esercizio2.2 esercizio2.2/ esercizio2.2/1941.dat  esercizio2.2/esercizio2.2.C  esercizio2.2/esercizio2.2.x  esercizio2.2/functions.C  esercizio2.2/functions.h  esercizio2.2/makefile esercizio2.2/vec_doub.C  esercizio2.2/vec_doub.htar -xvf
