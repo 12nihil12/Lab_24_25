@@ -6,10 +6,7 @@
 #include "TH1F.h"
 #include "TApplication.h"
 #include "TCanvas.h"
-
-
 #include "in_out.h"
-#include "stat.h" 
 
 using namespace std; 
 
