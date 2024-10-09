@@ -6,6 +6,10 @@
 using namespace std; 
 
 
+template <typename T> vector<T> loadff(char * filename); 
+template <typename T>  void print(char* nomefile, vector<T> v); 
+template <typename T>  void print(vector<T> v); 
+
 template <typename T> vector<T> loadff(char * filename){
 
     ifstream filein; 
