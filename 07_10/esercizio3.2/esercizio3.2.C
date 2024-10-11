@@ -48,7 +48,7 @@ int main(int argc,char ** argv)
     TCanvas mycanvas ("Histo","Histo");
     histo.Draw();
     histo.GetXaxis()->SetTitle("measurement");
-
+    mycanvas.Print("1941.pdf");
     app.Run();
         
 
