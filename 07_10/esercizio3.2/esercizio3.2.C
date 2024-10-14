@@ -6,10 +6,7 @@
 #include "TH1F.h"
 #include "TApplication.h"
 #include "TCanvas.h"
-
-
 #include "in_out.h"
-#include "stat.h" 
 
 using namespace std; 
 
@@ -51,7 +48,7 @@ int main(int argc,char ** argv)
     TCanvas mycanvas ("Histo","Histo");
     histo.Draw();
     histo.GetXaxis()->SetTitle("measurement");
-
+    mycanvas.Print("1941.pdf");
     app.Run();
         
 
