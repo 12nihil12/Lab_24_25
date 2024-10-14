@@ -44,7 +44,6 @@ int main(int argc,char ** argv)
     cout << "Media= " << histo.GetMean() << endl;
 
 
-
     TCanvas mycanvas ("Histo","Histo");
     histo.Draw();
     histo.GetXaxis()->SetTitle("measurement");

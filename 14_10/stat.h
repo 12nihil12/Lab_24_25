@@ -7,6 +7,15 @@
 #include <cmath> 
 #include <vector> 
 #include <algorithm> 
+#include <string>
+#include "TH1F.h"
+#include "TApplication.h"
+#include "TCanvas.h"
+
+#include "in_out.h"
+#include "stat.h" 
+
+
 using namespace std; 
 
 
@@ -19,7 +28,7 @@ double media (const vector<int> & v);
 
 template <typename T> double varianza (const vector<T> & v, double x); // varianza (avendo gia` la media)
 
-
+double calc_mean_delta(int i); 
 
 
 
@@ -69,11 +78,62 @@ template <typename T> double varianza (const vector<T> & v , double x) { // vari
 
     double scarto = 0;
 
-     for( int c= 0; c < v.size(); c++){
+    int count=0; 
+     for( int c= 0; c < v.size(); c=c+6){
         scarto = scarto + pow((x - (double)v[c]), 2); 
+        count++; 
     }
 
-    return scarto/v.size(); 
+    return scarto/count; 
+}
+
+void to_char(string str, char * arr){
+    int n = str.length();
+  
+     arr= new char [n+1];
+
+    cout << "HI"; 
+  
+    // Specify the ranges
+    auto first = str.begin();
+    auto last = str.end();
+  
+    // Convert the string to char array
+    copy(first, last, arr);
+    
+    // Null terminate the char array
+    arr[n] = '\0';
+
+    return; 
+    
+}
+
+
+double calc_mean_delta(int i){
+    string nomefile= "Data/" + to_string(i) + ".txt"; 
+    cout << nomefile << endl;
+    char * nfchar; 
+    to_char(nomefile, nfc);
+    cout << nfchar[i]; 
+    
+    vector <double> v= loadff<double>(nfchar); 
+
+    string histoname= "Delta temperature " + nomefile +"-today"; 
+    char * hischar; 
+    to_char(histoname); 
+    TH1F histo ("histo",hischar, 100, -10, 10) ;
+    histo.StatOverflows( kTRUE );
+    for ( int k = 0 ; k < v.size() ; k++ ) histo.Fill( v[k] );
+    
+    TCanvas mycanvas ("Histo","Histo");
+    histo.GetXaxis()->SetTitle("Delta");
+    string nm = "graph/" + to_string(i) + ".pdf"; 
+    char * nmc; 
+    to_char(nm); 
+    mycanvas.Print(nmc);
+    
+    
+    return histo.GetMean(); 
 }
 
 #endif

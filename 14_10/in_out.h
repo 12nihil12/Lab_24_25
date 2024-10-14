@@ -1,3 +1,6 @@
+#ifndef in_out_h
+#define in_out_h
+
 #include <iostream>
 #include <fstream> 
 #include <exception> 
@@ -43,3 +46,5 @@ template <typename T>  void print(vector<T> v) {
         cout << v[c] << endl;
     }
 }
+
+#endif
