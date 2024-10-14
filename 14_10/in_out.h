@@ -9,11 +9,11 @@
 using namespace std; 
 
 
-template <typename T> vector<T> loadff(char * filename); 
-template <typename T>  void print(char* nomefile, vector<T> v); 
+template <typename T> vector<T> loadff(const char * filename); 
+template <typename T>  void print(const char* nomefile, vector<T> v); 
 template <typename T>  void print(vector<T> v); 
 
-template <typename T> vector<T> loadff(char * filename){
+template <typename T> vector<T> loadff(const char * filename){
 
     ifstream filein; 
     filein.open(filename);
@@ -32,7 +32,7 @@ template <typename T> vector<T> loadff(char * filename){
     return v; 
 }
 
-template <typename T>  void print(char* nomefile, vector<T> v) {
+template <typename T>  void print(const char * nomefile, vector<T> v) {
     ofstream fileout; 
     fileout.open(nomefile); 
     for(int c=0; c< v.size(); c++){

@@ -27,8 +27,8 @@ template <typename T>  T media (const vector<T>& v);
 double media (const vector<int> & v);
 
 template <typename T> double varianza (const vector<T> & v, double x); // varianza (avendo gia` la media)
+template <typename T> double varianza (const vector<T> &v); // varianza 
 
-double calc_mean_delta(int i); 
 
 
 
@@ -79,7 +79,7 @@ template <typename T> double varianza (const vector<T> & v , double x) { // vari
     double scarto = 0;
 
     int count=0; 
-     for( int c= 0; c < v.size(); c=c+6){
+     for( int c= 0; c < v.size(); c++){
         scarto = scarto + pow((x - (double)v[c]), 2); 
         count++; 
     }
@@ -87,51 +87,56 @@ template <typename T> double varianza (const vector<T> & v , double x) { // vari
     return scarto/count; 
 }
 
-void to_char(string str, char * arr){
-    int n = str.length();
-  
-     arr= new char [n+1];
 
-    cout << "HI"; 
-  
-    // Specify the ranges
-    auto first = str.begin();
-    auto last = str.end();
-  
-    // Convert the string to char array
-    copy(first, last, arr);
-    
-    // Null terminate the char array
-    arr[n] = '\0';
+template <typename T> double varianza (const vector<T> & v) { // varianza (avendo gia` la media)
 
-    return; 
-    
+    double x= media <double> (v);
+    double scarto = 0;
+
+     for( int c= 0; c < v.size(); c++){
+        scarto = scarto + pow((x - (double)v[c]), 2); 
+    }
+
+    return scarto/v.size(); 
 }
 
 
-double calc_mean_delta(int i){
-    string nomefile= "Data/" + to_string(i) + ".txt"; 
-    cout << nomefile << endl;
-    char * nfchar; 
-    to_char(nomefile, nfc);
-    cout << nfchar[i]; 
-    
-    vector <double> v= loadff<double>(nfchar); 
+double calc_err (const vector<double> &v, double & med){
 
-    string histoname= "Delta temperature " + nomefile +"-today"; 
-    char * hischar; 
-    to_char(histoname); 
-    TH1F histo ("histo",hischar, 100, -10, 10) ;
+    vector <double> v_calc_err; 
+    
+    //err.push_back(varianza <double> (v));
+     for(int c=0; c < v.size(); c++){
+            if(c%7==0){
+                v_calc_err.push_back(v[c]);
+            }
+        }
+    med= media <double> (v_calc_err);
+    return sqrt((varianza <double> (v_calc_err,med))/(v_calc_err.size()));
+
+}
+double histo_op_delta(int i, vector <double> &  v){
+
+    
+    //string nomefile= "Data/" + to_string(i) + ".txt"; 
+
+    //vector <double> v= loadff<double>(nomefile.c_str()); 
+
+    //string nm = "copy/" + to_string(i) + ".txt"; 
+    
+    //print(nm.c_str(), v);
+    string histoname= "Delta temperature " + to_string(i) +"-today"; 
+
+    TH1F histo ("histo",histoname.c_str(), 100, -10, 10) ;
     histo.StatOverflows( kTRUE );
     for ( int k = 0 ; k < v.size() ; k++ ) histo.Fill( v[k] );
     
     TCanvas mycanvas ("Histo","Histo");
+    //histo.Draw();
     histo.GetXaxis()->SetTitle("Delta");
-    string nm = "graph/" + to_string(i) + ".pdf"; 
-    char * nmc; 
-    to_char(nm); 
-    mycanvas.Print(nmc);
-    
+    string graph_print = "graph/" + to_string(i) + ".pdf"; 
+ 
+    //mycanvas.Print(graph_print.c_str());
     
     return histo.GetMean(); 
 }

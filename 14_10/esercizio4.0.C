@@ -7,6 +7,8 @@
 #include "TH1F.h"
 #include "TApplication.h"
 #include "TCanvas.h"
+#include "TGraphErrors.h"
+
 
 #include "in_out.h"
 #include "stat.h" 
@@ -22,6 +24,7 @@ int main(int argc,char ** argv)
     
 
     TApplication app("app",0,0);
+    TGraphErrors trend;
 
     if(argc<3){
         cout << "Syntax: <startvalue> <endvalue> " << endl; 
@@ -31,19 +34,44 @@ int main(int argc,char ** argv)
     int endv=stoi(argv[2]);
 
 
-    vector <double> delta_mean; 
-    vector <int> year;
-
+    int index {0};
+    double err;
+    double delta; 
     for (int i=stv; i <= endv; i++){
-        delta_mean.push_back(calc_mean_delta(i)); 
-        year.push_back(i); 
+        string nomefile= "Data/" + to_string(i) + ".txt"; 
+        vector <double> v= loadff<double>(nomefile.c_str()); 
+        delta= histo_op_delta(i,v);
+        double media;  
+        err= calc_err(v,media);
+
+        trend.SetPoint(index, i, delta);
+        trend.SetPointError( index , 0 , err);
+        index++;
+        cout << "Anno: "<< i<< " | Delta: " << media << " +-" << err << endl; 
     }
     
-     print<double>("Output.dat", delta_mean);
+    
    
     
- 
-        
+    TCanvas c("Temperature trend","Temperature trend");
+    //c.cd();
+    c.SetGridx();
+    c.SetGridy();
+
+    trend.SetMarkerSize(1.0);
+    trend.SetMarkerStyle(22);
+    trend.SetFillColor(9);
+
+    trend.SetTitle("Temperature trend");
+    trend.GetXaxis()->SetTitle("Year");
+    trend.GetYaxis()->SetTitle("Averege #Delta (#circ C) year-today");
+    trend.Draw("apl");
+    trend.Draw("pX");
+
+    c.SaveAs("trend.pdf");
+
+    app.Run();
+            
 
     
    return 0;
