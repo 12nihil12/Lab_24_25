@@ -35,16 +35,16 @@ int main(int argc,char ** argv)
 
 
     int index {0};
-    double err;
-    double delta; 
+
     for (int i=stv; i <= endv; i++){
         string nomefile= "Data/" + to_string(i) + ".txt"; 
         vector <double> v= loadff<double>(nomefile.c_str()); 
-        delta= histo_op_delta(i,v);
+        histo_op_delta(i,v);
         double media;  
-        err= calc_err(v,media);
+        double err;  
+        calc_stat(v,media,err);
 
-        trend.SetPoint(index, i, delta);
+        trend.SetPoint(index, i, media);
         trend.SetPointError( index , 0 , err);
         index++;
         cout << "Anno: "<< i<< " | Delta: " << media << " +-" << err << endl; 
@@ -60,7 +60,9 @@ int main(int argc,char ** argv)
 
     trend.SetMarkerSize(1.0);
     trend.SetMarkerStyle(22);
-    trend.SetFillColor(9);
+    trend.SetMarkerColor(1);
+    trend.SetLineColor(9);
+
 
     trend.SetTitle("Temperature trend");
     trend.GetXaxis()->SetTitle("Year");
@@ -68,7 +70,7 @@ int main(int argc,char ** argv)
     trend.Draw("apl");
     trend.Draw("pX");
 
-    c.SaveAs("trend.pdf");
+    c.SaveAs("Temperature_trend.pdf");
 
     app.Run();
             

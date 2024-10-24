@@ -29,6 +29,7 @@ template <typename T> vector<T> loadff(const char * filename){
         v.push_back(appo);
     }
     
+    v.pop_back();
     return v; 
 }
 

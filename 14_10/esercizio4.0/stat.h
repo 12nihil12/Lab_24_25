@@ -101,7 +101,7 @@ template <typename T> double varianza (const vector<T> & v) { // varianza (avend
 }
 
 
-double calc_err (const vector<double> &v, double & med){
+void calc_stat(const vector<double> &v, double & med,double & err){
 
     vector <double> v_calc_err; 
     
@@ -112,10 +112,11 @@ double calc_err (const vector<double> &v, double & med){
             }
         }
     med= media <double> (v_calc_err);
-    return sqrt((varianza <double> (v_calc_err,med))/(v_calc_err.size()));
+    err= sqrt((varianza <double> (v_calc_err,med))/(v_calc_err.size()));
+    return; 
 
 }
-double histo_op_delta(int i, vector <double> &  v){
+void histo_op_delta(int i, vector <double> &  v){
 
     
     //string nomefile= "Data/" + to_string(i) + ".txt"; 
@@ -125,20 +126,22 @@ double histo_op_delta(int i, vector <double> &  v){
     //string nm = "copy/" + to_string(i) + ".txt"; 
     
     //print(nm.c_str(), v);
-    string histoname= "Delta temperature " + to_string(i) +"-today"; 
+    string histoname= "Delta temperature " + to_string(i); 
 
     TH1F histo ("histo",histoname.c_str(), 100, -10, 10) ;
     histo.StatOverflows( kTRUE );
     for ( int k = 0 ; k < v.size() ; k++ ) histo.Fill( v[k] );
     
     TCanvas mycanvas ("Histo","Histo");
-    //histo.Draw();
-    histo.GetXaxis()->SetTitle("Delta");
+    histo.Draw();
+    histo.GetXaxis()->SetTitle("Delta temperature (#circ C )");
+    histo.GetYaxis()->SetTitle("Frequency");
+
     string graph_print = "graph/" + to_string(i) + ".pdf"; 
  
-    //mycanvas.Print(graph_print.c_str());
+    mycanvas.Print(graph_print.c_str());
     
-    return histo.GetMean(); 
+    return; 
 }
 
 #endif
