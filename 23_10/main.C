@@ -18,7 +18,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-//TApplication app("app",0,0);
+TApplication app("app",0,0);
 
 
   if ( argc!= 4) {
@@ -54,13 +54,26 @@ int main(int argc, char** argv) {
     E_v.push_back( E.modulo() );
   }
 
-  for(int i=0; i< E_v.size();i++){
-    cout << E_v[i]<< endl;
+  TCanvas c("Campo","Campo");
+    //c.cd();
+  c.SetGridx();
+  c.SetGridy();
+  
+  auto campo = new TGraph(z.size());
+  for (int i=0; i < z.size(); i++){
+    campo->AddPoint(z[i],E_v[i]); 
   }
+  campo->SetTitle("Campo elettrico dipolo");
+  campo ->GetXaxis()->SetTitle("z[m]");
+  campo->GetYaxis()->SetTitle("|E| [C]");
+  campo->Draw("A*"); 
+
+  c.SaveAs("campo.pdf");
 
 
+  cout  << "Legge di potenza: " << log(E_v[3]/log(E_v[40]))/log(z[3]/z[40]) << endl;
+  cout  << "Legge di potenza: " << log(E_v[6]/log(E_v[60]))/log(z[6]/z[60]) << endl;
 
-  TGraph() campo;
 
   return 0;  
 }
