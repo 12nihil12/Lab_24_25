@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <vector> 
+#include <iomanip> 
 
 #include "posizione.h"
 #include "particella.h"
@@ -22,7 +23,7 @@ TApplication app("app",0,0);
 
 
   if ( argc!= 4) {
-    cerr << "Usage: " << argv[0] << " <x> <y> <z>" << endl;
+    cerr << "Uso di: " << argv[0] << " <x> <y> <z> (coordinate del punto in cui calcolare il campo)" << endl;
     exit(-1); 
   }
 
@@ -32,17 +33,15 @@ TApplication app("app",0,0);
   const double d =1.E-10;
 
   posizione p( atof(argv[1]) , atof(argv[2]), atof(argv[3]) );
-
   punto_mat elettrone(me, -e,0.,0.,d/2.)                            ;
   punto_mat protone(mp, e,0.,0.,-d/2.);
 
-    //cout << p.coord_cart().x << p.coord_cart().y << p.coord_cart().z << endl;
 
   campo_vett E = elettrone.E_field( p ) + protone.E_field( p ) ;
 
-  cout << "E=(" << E.getFx() << "," << E.getFy() << "," << E.getFz() << ")" << endl;
+  E.print_f(); 
 
-
+  
   vector <double> E_v;  
   vector <double> z;  
 
@@ -60,20 +59,21 @@ TApplication app("app",0,0);
   c.SetGridy();
   
   auto campo = new TGraph(z.size());
-  for (int i=0; i < z.size(); i++){
+  for (int i=1; i < z.size(); i++){
     campo->AddPoint(z[i],E_v[i]); 
   }
   campo->SetTitle("Campo elettrico dipolo");
   campo ->GetXaxis()->SetTitle("z[m]");
-  campo->GetYaxis()->SetTitle("|E| [C]");
+  campo->GetYaxis()->SetTitle("|E| [V7m]");
   campo->Draw("A*"); 
 
+  cout  << "Lungo z il campo segue un andamento: E=kz^" << setprecision(1) << (log(E_v[3]/(E_v[40]))/log(z[3]/z[40]))<< endl;
+ 
+  cout << endl; 
   c.SaveAs("campo.pdf");
 
 
-  cout  << "Legge di potenza: " << log(E_v[3]/log(E_v[40]))/log(z[3]/z[40]) << endl;
-  cout  << "Legge di potenza: " << log(E_v[6]/log(E_v[60]))/log(z[6]/z[60]) << endl;
-
+  
 
   return 0;  
 }

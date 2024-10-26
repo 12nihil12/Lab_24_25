@@ -7,11 +7,11 @@ particella::particella(double mp,double qp){
     q=qp;
 }
 
-void particella::print(){
+void particella::print_p(){
     cout << "Particella || m : " << getm() << " kg | q : " << getq() << " C" << endl;
 }
 
 
-void elettrone::print(){
-    cout << "elettrone || m : " << getm() << " kg | q : " << getq() << " C" << endl;
+void elettrone::print_p(){
+    cout << "Elettrone || m : " << getm() << " kg | q : " << getq() << " C" << endl;
 }

@@ -6,20 +6,12 @@
 using namespace std;
 
 //COSTRUTTORI
-campo_vett::campo_vett(const posizione & p){
-    co_cart cc=p.coord_cart();
-    x=cc.x;
-    y=cc.y;
-    z=cc.z;
+campo_vett::campo_vett(const posizione & p): posizione(p){
     Fx=0.;
     Fy=0.;
     Fz=0.;
 }
-campo_vett::campo_vett(const posizione & p,double Fxp,double Fyp,double Fzp){
-    co_cart cc=p.coord_cart();
-    x=cc.x;
-    y=cc.y;
-    z=cc.z;
+campo_vett::campo_vett(const posizione & p,double Fxp,double Fyp,double Fzp): posizione(p){
     Fx=Fxp;
     Fy=Fyp;
     Fz=Fzp;

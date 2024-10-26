@@ -1,7 +1,7 @@
 #ifndef campo_vett_h
 #define campo_vett_h
 #include <cmath>
-
+#include <iomanip> 
 #include "posizione.h"
 class campo_vett : public posizione {
 
@@ -22,10 +22,12 @@ class campo_vett : public posizione {
         
     //operatori
 
-    campo_vett & operator+=( const campo_vett & ) ;
-    campo_vett operator+( const campo_vett & ) const;
+        campo_vett & operator+=( const campo_vett & ) ;
+        campo_vett operator+( const campo_vett & ) const;
 
+    //altro
         double modulo(){return sqrt(Fx*Fx+Fy*Fy+Fz*Fz);};
+        void print_f(){cout << "\e[1m " << " E " << "\e[0m "<< "= ( " << setprecision(3) << getFx() << " , " << getFy() << " ," << getFz() << " )" << endl; }
 
     private:
         double Fx;
