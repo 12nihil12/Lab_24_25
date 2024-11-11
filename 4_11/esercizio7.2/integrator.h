@@ -6,7 +6,7 @@ class integrator {
         integrator( double a, double b ){I_sign(a,b); i_N=0;i_sum= 0;i_integral=0; i_h=0;}; 
 
        virtual double calc(const fun * f,unsigned int N) =0;
-       virtual double calc(const fun * f,double epsilon) =0;
+       //virtual double calc(const fun * f,double epsilon) =0;
 
 
        double get_a(){return i_a ;}
@@ -52,8 +52,8 @@ class simpson: public integrator{
 class trapezi: public integrator{
     public:
         trapezi(double a, double b ): integrator( a, b ) { ;}; 
-        virtual double calc(const fun * f,double epsilon)override;
-        virtual double calc(const fun * f,unsigned int N)override;
+        double calc(const fun * f,double epsilon);
+        virtual double calc(const fun * f,unsigned int N) override;
 
 
     private: 

@@ -92,7 +92,7 @@ double trapezi::calc(const fun * f, double epsilon){
     do{
         i_h=i_h/2; 
         i_N=2*i_N; 
-        //cout << "N " << i_N; 
+        cout << "N " << i_N; 
         for(int k=1; k < i_N; k++){
             //cout << k << endl; 
             if(k%2!=0){
@@ -102,9 +102,9 @@ double trapezi::calc(const fun * f, double epsilon){
         }
         
         err(); 
-        //cout << "| err " << i_err; 
+        cout << "| err " << i_err; 
         i_integral=i_sign*i_sum*i_h;
-        //cout << "| int " << i_integral << endl;  
+        cout << "| int " << i_integral << endl;  
 
         
     }

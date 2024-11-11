@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
 
     
 
-    /*
+    
 
     unsigned int N=i_t->get_N(); 
     cout << "Integrale a N fissato, metodo dei trapezi" << endl; 
@@ -46,7 +46,6 @@ int main(int argc, char** argv) {
         k++; 
     }while(i < N); 
 
-    */
 
     return 0; 
 }
