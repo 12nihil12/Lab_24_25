@@ -1,13 +1,14 @@
 #ifndef integrator_h
 #define integrator_h
 #include "fun.h"
+
+
 class integrator {
     public :
         integrator( double a, double b ){I_sign(a,b); i_N=0;i_sum= 0;i_integral=0; i_h=0;}; 
 
        virtual double calc(const fun * f,unsigned int N) =0;
-       //virtual double calc(const fun * f,double epsilon) =0;
-
+    
 
        double get_a(){return i_a ;}
        double get_b(){return i_b;}
@@ -57,7 +58,7 @@ class trapezi: public integrator{
 
 
     private: 
-        void err(){i_err=4./3*fabs(i_integral-i_sum*i_sign*i_h); }
+        void err(){i_err=4./3*fabs(i_integral-i_sum*i_sign*i_h); }//calcola l'errore
         double i_err; //salva l'errore
 };
 

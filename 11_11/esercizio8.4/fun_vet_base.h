@@ -23,7 +23,6 @@ class oscillatore_armonico:public fun_vet_base{
 
             vector <double> F(x.size()); 
     
-
             F[0]=x[1];
             F[1]=-pow(i_om,2)*x[0]; 
             return F; 
@@ -53,6 +52,23 @@ class pendolo:public fun_vet_base{
 };
 
 
+class oscillatore_forzato:public fun_vet_base{
+    public:
+        oscillatore_forzato(double om,double beta): fun_vet_base() { i_om=om; i_beta=beta ;}; 
+        virtual vector <double>  eval(double t, const vector <double> &x)const override{
+
+            vector <double> F(x.size());
+            F[0]=x[1];
+            F[1]=-pow(i_om,2)*x[0]-i_beta*x[1]+sin(i_wf*t); 
+            return F; 
+        }
+    void set_wf(double wf){i_wf=wf;};
+
+    private:
+        double i_om; 
+        double i_beta; 
+        double i_wf; 
+};
 
 
 vector <double>  pendolo::eval(double t, const vector <double> &x)const{

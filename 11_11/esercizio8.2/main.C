@@ -49,7 +49,7 @@ if( mkdir("graph",0777) !=0){
 double h;
 auto * oam = new oscillatore_armonico(1.); 
 
-auto * eq = new eulero(x_0,0.); 
+auto * eq = new runge_kutta(x_0,0.); 
 
 int k=0; 
 double t=0; 
@@ -67,7 +67,7 @@ for(int j=1; j < 1000; j++){
   bool check=1; 
   do{
    
-    x= eq->step(x,t,h,oam); 
+    x= eq->step(x,t,oam,h); 
     t=t+h; 
     if(j==g){
       if(k< 700000){
@@ -116,8 +116,7 @@ for(int j=1; j < 1000; j++){
 
   e.SaveAs("graph_err.pdf");
 
-   cout << "I plot x(t) relativi ad alcuni h campione si trovano nella cartella <graph>" << endl; 
-
+  cout << "I plot x(t) relativi ad alcuni h campione si trovano nella cartella <graph>" << endl; 
 
   myApp.Run();
 

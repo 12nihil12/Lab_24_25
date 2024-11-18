@@ -27,13 +27,13 @@ int main(int argc, char** argv) {
 
     auto * f= new myfun(); 
     auto * i_t = new trapezi(a,b);
+
  
-
-    cout << "Integral: " << i_t->calc(f,epsilon) << endl << endl; 
-
-    
+    cout << "Integral: " << fixed << setprecision(-log10(epsilon))  << i_t->calc(f,epsilon) << endl << endl; 
 
     
+
+    /* 
 
     unsigned int N=i_t->get_N(); 
     cout << "Integrale a N fissato, metodo dei trapezi" << endl; 
@@ -46,6 +46,7 @@ int main(int argc, char** argv) {
         k++; 
     }while(i < N); 
 
+    */
 
     return 0; 
 }
