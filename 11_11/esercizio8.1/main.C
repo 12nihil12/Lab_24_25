@@ -34,7 +34,7 @@ vector <double> x_0 {0.,1.};
 vector <double> x =x_0; 
 
 //print(x_0);
-
+cout << "Checking existence of <graph/> directory" << endl; 
 if( mkdir("graph",0777) !=0){
   if(errno==EEXIST){
     cout << "Directory already exists." << endl; 
@@ -54,38 +54,43 @@ auto * eq = new eulero(x_0,0.);
 int k=0; 
 double t=0; 
 double err; 
-int c=0; 
+int c=0; int g=1; 
 
-for(int j=1; j < 10000; j= j*5){
-  h=0.1/j;
+
+for(int j=1; j < 1000; j++){
+  h=0.0001 + j*0.0001; 
   cout << "Passo:" << h << endl;
-  TGraph graph_x_t; 
-  TCanvas cg; 
-  k=0; 
   
+   TGraph graph_x_t; 
+    TCanvas cg; 
+  k=0; 
   bool check=1; 
   do{
-    
+   
     x= eq->step(x,t,h,oam); 
     t=t+h; 
-    if(k< 500000){
-       graph_x_t.SetPoint(k,t,x[0]); 
-    }else if(check==1){
-      cout << "Maximum number of points reached. Graphing with 500000 points" << endl; 
-      check=0; 
+    if(j==g){
+      if(k< 700000){
+        graph_x_t.SetPoint(k,t,x[0]); 
+      }else if(check==1){
+        cout << "Maximum number of points reached. Graphing with 500000 points" << endl; 
+        check=0; 
+      }
     }
-   
     k++; 
   } while(t <70);
 
+  if(j==g){
+    string graph_print = "graph/passo_" + to_string(h) + ".pdf"; 
+    cg.cd();
+    cg.SetGrid(); 
+    graph_x_t.GetXaxis()->SetTitle("Tempo [s]");
+    graph_x_t.GetYaxis()->SetTitle("Posizione x [m]");
+    graph_x_t.Draw("AL");
+    cg.SaveAs(graph_print.c_str()); 
+    g=g*5;
+  }
   
-  string graph_print = "graph/passo_" + to_string(h) + ".pdf"; 
-  cg.cd();
-  cg.SetGrid(); 
-  graph_x_t.GetXaxis()->SetTitle("Tempo [s]");
-  graph_x_t.GetYaxis()->SetTitle("Posizione x [m]");
-  graph_x_t.Draw("AL");
-  cg.Print(graph_print.c_str());
   err= fabs( x[0]-sin(t));
 
   x=x_0; 
