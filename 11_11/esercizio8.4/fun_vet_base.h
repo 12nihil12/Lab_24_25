@@ -35,7 +35,7 @@ class oscillatore_armonico:public fun_vet_base{
 
 class pendolo:public fun_vet_base{
     public:
-        pendolo(double l, double theta, double g=9.80665): fun_vet_base() { i_l=l; i_theta=theta; i_g=g; }; 
+        pendolo(double l, double g=9.80665): fun_vet_base() { i_l=l; i_g=g; }; 
         virtual vector <double>  eval(double t, const vector <double> &x)const override;
 
 
@@ -46,9 +46,7 @@ class pendolo:public fun_vet_base{
 
     private:
         double i_l; 
-        double i_theta; 
         double i_g; 
-        double i_T; 
 };
 
 
@@ -70,6 +68,8 @@ class oscillatore_forzato:public fun_vet_base{
         double i_wf; 
 };
 
+
+//IMPLEMENTAZIONE
 
 vector <double>  pendolo::eval(double t, const vector <double> &x)const{
 

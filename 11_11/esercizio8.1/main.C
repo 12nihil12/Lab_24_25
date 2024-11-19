@@ -54,10 +54,10 @@ auto * eq = new eulero(x_0,0.);
 int k=0; 
 double t=0; 
 double err; 
-int c=0; int g=1; 
+int c=0; 
 
 
-for(int j=1; j < 1000; j++){
+for(int j=1; j < 1000; j*=2){
   h=0.0001 + j*0.0001; 
   cout << "Passo:" << h << endl;
   
@@ -69,27 +69,27 @@ for(int j=1; j < 1000; j++){
    
     x= eq->step(x,t,h,oam); 
     t=t+h; 
-    if(j==g){
+    
       if(k< 700000){
         graph_x_t.SetPoint(k,t,x[0]); 
       }else if(check==1){
-        cout << "Maximum number of points reached. Graphing with 500000 points" << endl; 
+        cout << "Maximum number of points reached. Graphing with 700000 points" << endl; 
         check=0; 
       }
-    }
+  
     k++; 
   } while(t <70);
 
-  if(j==g){
+  
     string graph_print = "graph/passo_" + to_string(h) + ".pdf"; 
     cg.cd();
     cg.SetGrid(); 
+
     graph_x_t.GetXaxis()->SetTitle("Tempo [s]");
     graph_x_t.GetYaxis()->SetTitle("Posizione x [m]");
     graph_x_t.Draw("AL");
     cg.SaveAs(graph_print.c_str()); 
-    g=g*5;
-  }
+  
   
   err= fabs( x[0]-sin(t));
 
@@ -116,7 +116,7 @@ for(int j=1; j < 1000; j++){
 
   e.SaveAs("graph_err.pdf");
 
-   cout << "I plot x(t) relativi ad alcuni h campione si trovano nella cartella <graph>" << endl; 
+   cout << "I plot x(t) relativi ai passi h considerati si trovano nella cartella <graph>" << endl; 
 
 
   myApp.Run();

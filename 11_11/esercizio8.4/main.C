@@ -14,6 +14,8 @@
 #include "TCanvas.h"
 #include "TGraph.h"
 #include "TColor.h"
+#include "TSystem.h"
+
 
 #include "vector_operation.h"
 #include "fun_vet_base.h"
@@ -26,19 +28,20 @@ using namespace std;
 int main(int argc, char** argv) {
 
 
-if(argc!=3){
-  cout << "Usage of " << argv[0] << ": <integration step> <x_0 sel>" << endl; 
+
+
+if(argc!=2){
+  cout << "Usage of " << argv[0] << ": <integration step>" << endl; 
   return -1; 
 }
 
+
 double h= atof(argv[1]); 
-double sel= atoi(argv[2]);
 
 TApplication myApp("myApp",0,0);
 
 TGraph graph_A;
-TGraph graph_x;
-
+//TGraph graph_x;
 
 TCanvas c; 
 
@@ -49,8 +52,8 @@ vector <double> x =x_0;
 double w=10;
 double beta= 1./30; 
 
-
 auto *sol = new runge_kutta(x_0,0.); 
+
 
 auto * oamf = new oscillatore_forzato(w,beta); 
 
@@ -62,7 +65,6 @@ int j=0;
 double t=0; 
 double A=0; 
 
-oamf->set_wf(wf);
 /* 
 do{
 
@@ -74,6 +76,8 @@ do{
 
 
  */
+
+
 do{
 
   t=0; 
@@ -106,15 +110,7 @@ do{
     t=t+h;  
   } while(1);
 
-   
- /*  
-  while(fabs(x[0])>A){
-    A=fabs(x[0]); 
-      x= sol->step(x,t,oamf,h);
-    t=t+h;
-  }
 
-  */
   graph_A.SetPoint(k,wf,A);
   wf=wf+0.05;  
   
@@ -125,7 +121,7 @@ do{
 
 c.cd(); 
 c.SetGrid(); 
-graph_A.SetTitle("Ampiezza di un oscillatore forzato  di #omega=10 rad/s in funzione della forzante #omega_{f}"); 
+graph_A.SetTitle("Ampiezza di un oscillatore (#omega=10 rad/s ) smorzato (#alpha = 0.333 ) forzato in funzione della forzante  #omega_{f}"); 
 graph_A.GetYaxis()->SetTitle("A[m]");
 graph_A.GetXaxis()->SetTitle("#omega_{f} [rad/s]");
 graph_A.SetMarkerColor(kBlue + 3); 
