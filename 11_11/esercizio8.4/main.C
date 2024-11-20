@@ -100,7 +100,7 @@ do{
   
  
     if ( x_set[1]*x[1] < 0  ) {  
-      double m= (x_set[1]-x[1])/h; 
+      double m= (x[1]-x_set[1])/h; 
        double q=x_set[1]-m*t;
         
        A= abs(x_set[0]+(-q/m-t)*x_set[1]);
@@ -121,7 +121,7 @@ do{
 
 c.cd(); 
 c.SetGrid(); 
-graph_A.SetTitle("Ampiezza di un oscillatore (#omega=10 rad/s ) smorzato (#alpha = 0.333 ) forzato in funzione della forzante  #omega_{f}"); 
+graph_A.SetTitle("Ampiezza di un oscillatore (#omega=10 rad/s ) smorzato (#alpha = 0.333 ) forzato in funzione della forzante #omega_{f}"); 
 graph_A.GetYaxis()->SetTitle("A[m]");
 graph_A.GetXaxis()->SetTitle("#omega_{f} [rad/s]");
 graph_A.SetMarkerColor(kBlue + 3); 

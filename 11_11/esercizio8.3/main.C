@@ -74,7 +74,7 @@ do{
 
     v= phi[1]; 
     phi= sol->step(phi,t,p,h); 
-     m= (v-phi[1])/h; 
+     m= (phi[1]-1)/h; 
     q=v-m*t;
 
     /*  CONTROL
