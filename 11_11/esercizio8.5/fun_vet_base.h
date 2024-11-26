@@ -18,7 +18,7 @@ class fun_vet_base{
 
 };
 
-
+/*
 class terra:public fun_vet_base{
     public:
         terra(): fun_vet_base() { ;}; 
@@ -36,6 +36,25 @@ class terra:public fun_vet_base{
 
     
 };
+ */
 
+ class terra:public fun_vet_base{
+    public:
+        terra(): fun_vet_base() { ;}; 
+        virtual vector <double>  eval(double t, const vector <double> &x)const override{
+
+            vector <double> F(x.size()); 
+    
+            double r=sqrt(pow(x[0],2) + pow(x[2],2)); 
+            F[0]=x[1];
+            F[1]=-G*M_S*x[0]/pow(r,3); 
+            F[2]= x[3]; 
+            F[3]=-G*M_S*x[2]/pow(r,3);  
+            return F; 
+        }
+
+
+    
+};
 
 #endif
