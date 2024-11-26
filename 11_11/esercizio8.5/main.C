@@ -57,13 +57,16 @@ TGraph myGraph;
 TCanvas c; 
 
 
-vector <double> z_0 {A,0.,0.}; 
+//vector <double> z_0 {A,0.,0.}; 
+vector <double> z_0 {A,0.,0.,V}; 
+
 vector <double> z =z_0; 
 
 
 
 
 auto *sol = new runge_kutta(z_0,0.); 
+
 
 auto * p = new terra(); 
 
@@ -110,24 +113,28 @@ while(t<31622400){
 
 
 do{
-  double x=z[0]*cos(z[2]);
-  double y=z[0]*sin(z[2]);
-  myGraph.SetPoint(k,x,y);
+  //double x=z[0]*cos(z[2]);
+  //double y=z[0]*sin(z[2]);
+  //myGraph.SetPoint(k,x,y);
+  myGraph.SetPoint(k,z[0],z[2]);
    
     myGraph.Draw("ALP");
     c.Update();
     gSystem->ProcessEvents();
-    usleep(10000);
+    //usleep(10000);
 
   vector <double> z_set= z; 
   
   z= sol->step(z,t,p,h); 
 
+  
+  
+  if(z[1]*z_set[1] <0 ){
 
-  if(z[1]*z_set[1] <0){
+    cout << "t : " << t; 
     double m= (z[1]-z_set[1])/h; 
     double q=z_set[1]-m*t; 
-    T=-2*q/m; 
+    T= -2.*q/m; 
     B=abs(z_set[0]+(-q/m-t)*z_set[1]); 
    
     z=z_set;
@@ -140,7 +147,6 @@ do{
 }while(1); 
 
 
-
 vector <int> T_d=convert(T); 
 cout << endl << "***" <<endl; 
 
@@ -149,19 +155,22 @@ cout << "r_perielio/r_afelio = " << A/B << endl;
 
 cout << "***" <<endl; 
 
+
+
 while(t<T){ 
 
 
-  double x=z[0]*cos(z[2]);
-  double y=z[0]*sin(z[2]);
+  //double x=z[0]*cos(z[2]);
+  //double y=z[0]*sin(z[2]);
   //cout << "x |" << x << " y  | " << y <<endl; 
 
-   myGraph.SetPoint(k,x,y);
+   //myGraph.SetPoint(k,x,y);
+   myGraph.SetPoint(k,z[0],z[2]);
    
     myGraph.Draw("AL*");
     c.Update();
     gSystem->ProcessEvents();
-    usleep(10000);
+    //usleep(10000);
   
   z= sol->step(z,t,p,h); 
 
