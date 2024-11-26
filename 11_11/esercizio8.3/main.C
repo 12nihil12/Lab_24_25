@@ -74,7 +74,7 @@ do{
 
     v= phi[1]; 
     phi= sol->step(phi,t,p,h); 
-     m= (phi[1]-1)/h; 
+     m= (phi[1]-v)/h; 
     q=v-m*t;
 
     /*  CONTROL
@@ -123,7 +123,7 @@ do{
 
 c.cd(); 
 c.SetGrid(); 
-graph_T.SetTitle("Periodo di un pendolo di lunghezza l=1 m in funzione di #theta_{0}"); 
+graph_T.SetTitle("Periodo di un pendolo di lunghezza l=1 m in funzione di   #theta_{0}"); 
 graph_T.GetYaxis()->SetTitle("T[s]");
 graph_T.GetXaxis()->SetTitle("#theta_{0} [rad]");
 graph_T.SetMarkerColor(kBlue + 3); 
