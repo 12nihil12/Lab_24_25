@@ -28,16 +28,16 @@ vector <int> convert(double s);
 int main(int argc, char** argv) {
 
 
+  if(argc!=2){
+      cout << "Usage of "<< argv[0] << " <seed>" << endl; 
+      return 0;
+  }
+  unsigned int seed=atoi(argv[1]);
 
-    if(argc!=2){
-        cout << "Usage of "<< argv[0] << " <seed>" << endl; 
-    }
-    unsigned int seed=atoi(argv[1]);
+  gen_rand gen (seed); 
+    
 
-    gen_rand gen (seed); 
-    cout << seed << endl; 
-
-     TApplication app("app",0,0);
+  TApplication app("app",0,0);
 
   int nmax = 10000;
 
@@ -62,21 +62,22 @@ int main(int argc, char** argv) {
   unif.GetXaxis()->SetTitle("x [AU]");
   unif.GetYaxis()->SetTitle("N");
   unif.Draw();
+
   c.cd(2);
 
-    esp.GetXaxis()->SetTitle("x [AU]");
+  esp.GetXaxis()->SetTitle("x [AU]");
   esp.GetYaxis()->SetTitle("N");
   esp.Draw();
 
 
- c.cd(3);
+  c.cd(3);
 
   gauss.GetXaxis()->SetTitle("x [AU]");
   gauss.GetYaxis()->SetTitle("N");
   gauss.Draw();
 
 
- c.cd(4);
+  c.cd(4);
 
   gaussAR.GetXaxis()->SetTitle("x [AU]");
   gaussAR.GetYaxis()->SetTitle("N");
@@ -86,5 +87,5 @@ int main(int argc, char** argv) {
 
 
 
-    return 0; 
+  return 0; 
 }

@@ -141,7 +141,7 @@ do{
     break; 
   }
 
-
+ 
   k++; 
   t=t+h; 
 }while(1); 
@@ -181,10 +181,57 @@ while(t<T){
 
 //cout << "B | " << B << endl;
 
-
+usleep(10000); 
 
 //c.SaveAs("graph.pdf");
 
+TGraph ros;
+TCanvas c2; 
+
+
+
+
+//vector <double> z_0 {A,0.,0.}; 
+
+
+auto * q = new rosetta(); 
+
+title = "Rosetta (passo 10 d)" ;
+c2.cd(); 
+c2.SetGrid(); 
+ros.SetTitle(title.c_str());
+ros.GetXaxis()->SetTitle("x[m]");
+ros.GetYaxis()->SetTitle("y[m]");
+ros.SetMarkerStyle(8);
+ros.SetMarkerColor(kMagenta + 3); 
+ros.SetLineColor(kMagenta-6); 
+
+k=0; 
+
+z=z_0; 
+
+h=864000;
+
+do{
+  //double x=z[0]*cos(z[2]);
+  //double y=z[0]*sin(z[2]);
+  //myGraph.SetPoint(k,x,y);
+ ros.SetPoint(k,z[0],z[2]);
+   
+    ros.Draw("ALP");
+    c2.Update();
+    gSystem->ProcessEvents();
+    //usleep(10000);
+
+  vector <double> z_set= z; 
+  
+  z= sol->step(z,t,q,h); 
+
+
+  k++; 
+  t=t+h; 
+  
+}while(k<2000); 
 
 
 

@@ -9,6 +9,18 @@
 using namespace std; 
 
 
+bool check(){
+    char ans; 
+     cout << "Warning: this action may result in unexpected bad behavior. Continue? [Y/n]" << endl; 
+    cin >> ans; 
+    if(ans=='Y' || ans=='y'){
+        return 1;
+    }else{
+        return 0; 
+    }
+
+}
+
 class gen_rand{
     public: 
 
@@ -16,11 +28,9 @@ class gen_rand{
     gen_rand(unsigned int seed){ i_seed=seed; i_a=A; i_c=C; i_m=pow(2,31); }
 
    
-    void SetA(unsigned int a) { cout << "Warning: this action may result in unexpected bad behavior" << endl; i_a=a;}
-    void SetC(unsigned int c) { cout << "Warning: this action may result in unexpected bad behavior" << endl; i_c=c;}
-    void SetM(unsigned int m) { cout << "Warning: this action may result in unexpected bad behavior" << endl; i_m=m;}
-
-
+    void SetA(unsigned int a) { if(!check()){return;} ; i_a=a;}
+    void SetC(unsigned int c) { if(!check()){return;} ; i_c=c;}
+    void SetM(unsigned int m) { if(!check()){return;} ; i_m=m;}
 
     double rand(){double x= (i_a*i_seed + i_c)%i_m; i_seed=x; return x/i_m; }; 
     double unif (double a, double b); 
@@ -42,7 +52,7 @@ class gen_rand{
        
 
 
-        return min(a,b) + (1-r)*fabs(b-a); 
+        return min(a,b) + r*fabs(a-b); 
     }
 
 double gen_rand::esp(double l){
