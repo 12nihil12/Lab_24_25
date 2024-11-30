@@ -8,6 +8,7 @@
 
 using namespace std; 
 
+
 bool check(){
     char ans; 
      cout << "Warning: this action may result in unexpected bad behavior. Continue? [Y/n]" << endl; 
@@ -31,7 +32,7 @@ class gen_rand{
     void SetC(unsigned int c) { if(!check()){return;} ; i_c=c;}
     void SetM(unsigned int m) { if(!check()){return;} ; i_m=m;}
 
-    double rand(){double x= (i_a*i_seed + i_c)%i_m; i_seed=x; return x/i_m; }; 
+    double rand(){i_seed=(i_a*i_seed + i_c)%i_m; return double((i_a*i_seed + i_c)%i_m)/i_m; }; 
     double unif (double a, double b); 
     double esp(double l);
     double gauss(double med, double s); 
@@ -51,7 +52,7 @@ class gen_rand{
        
 
 
-        return min(a,b) + (1-r)*fabs(b-a); 
+        return min(a,b) + r*fabs(a-b); 
     }
 
 double gen_rand::esp(double l){

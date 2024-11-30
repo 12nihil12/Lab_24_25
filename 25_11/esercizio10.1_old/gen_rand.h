@@ -8,7 +8,6 @@
 
 using namespace std; 
 
-
 bool check(){
     char ans; 
      cout << "Warning: this action may result in unexpected bad behavior. Continue? [Y/n]" << endl; 
@@ -52,7 +51,7 @@ class gen_rand{
        
 
 
-        return min(a,b) + r*fabs(a-b); 
+        return min(a,b) + (1-r)*fabs(b-a); 
     }
 
 double gen_rand::esp(double l){

@@ -35,11 +35,16 @@ int main(int argc, char** argv) {
   unsigned int seed=atoi(argv[1]);
 
   gen_rand gen (seed); 
-    
+  
+
+
 
   TApplication app("app",0,0);
 
-  int nmax = 10000;
+  int nmax = 100000;
+
+  cout << "Parameters:  seed = " << seed << " | n_max = " << nmax << endl; 
+
 
   TH1F unif("Uniforme","Uniforme",70,4,11) ;
   TH1F esp("Esponenziale","Esponenziale",70,0,10) ;
