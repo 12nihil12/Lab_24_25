@@ -8,14 +8,6 @@
 #include <fstream>
 #include <exception> 
 
-#include "TApplication.h"
-#include "TAxis.h"
-#include "TCanvas.h"
-#include "TGraph.h"
-#include "TColor.h"
-#include "TSystem.h"
-#include "TH1F.h"
-
 #include "gen_rand.h"
 #include "fun.h"
 #include "integrator.h"
@@ -40,7 +32,6 @@ int main(int argc, char** argv) {
   cout << "Directory <int_values/> created" << endl; 
   }
 
-  TApplication app("app",0,0);
    
    auto * f= new myfun(); 
 
@@ -60,7 +51,7 @@ int main(int argc, char** argv) {
   ofstream fileout; 
 
   int N=500; 
-  for(int k=0; k < 4; k++){
+  for(int k=0; k < 6; k++){
 
     if(k!=0){
       N=(k%2!=0)?N*2: N*5; 
@@ -68,14 +59,14 @@ int main(int argc, char** argv) {
     
 
     string name = "int_values/N_" +to_string(N) + ".txt"; 
-    cout << name << endl; 
+
     fileout.open(name.c_str()); 
 
     cout << "N=" << N << endl; 
     //hist_vec[k]=new TH1F("Histogram","Histogram",100,0.80,1.20 );
    
     
-    for(int i=0; i<=10000; i++){
+    for(int i=0; i<10000; i++){
 
       double iv= integral->calc(f, N) ; 
       fileout << iv << endl; 

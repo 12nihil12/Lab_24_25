@@ -30,6 +30,27 @@ void integrator::I_sign( double a, double b ) {
 }
 
 
+ double hitormiss::calc(const fun * f,unsigned int N,double f_max){
+
+    unsigned int N_hit=0;
+    
+
+
+    double x,y;
+
+    for(int i=0; i <N; i++){
+        x=i_gen->unif(i_a,i_b);
+        y=i_gen->unif(0,f_max);
+
+        if(y<f->eval(x))N_hit++;
+    }
+
+    return double(N_hit)/N*(i_b-i_a)*f_max; 
+}
+
+
+
+
 
 double midpoint::calc(const fun * f, unsigned int N){
     while (N<=0){
