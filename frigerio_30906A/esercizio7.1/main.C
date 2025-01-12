@@ -14,7 +14,6 @@
 #include "TCanvas.h"
 #include "TGraph.h"
 
-int cifre_sig(double epsilon); 
 using namespace std;
 
 int main(int argc, char** argv) {
@@ -52,14 +51,14 @@ int main(int argc, char** argv) {
         h=(b-a)/s; 
         err=fabs(1-i_S->calc(f,s)); 
         
-        file_out << "Step: " << setprecision(cifre_sig(err)) << left << setw(4) << s   << right<< "| h: " << left << setw(14) <<h << right << " |  errore: " <<  left << setw(16) <<err << right; 
+        file_out << "Step: " << fixed <<  setprecision(-floor(log10(err))) << left << setw(4) << s   << right<< "| h: " << left << setw(14) <<h << right << " |  errore: " <<  left << setw(16) <<err << right; 
         
         file_out   << " | integrale " << i_S->get_int() << endl; 
         
         g.SetPoint(i-1,s,err); 
     }
 
-    cout << endl << "Valore dell'integrale  calcolato con " << 2* N << " step : " << fixed << setprecision(-log10(err)) << i_S->get_int() << endl; 
+    cout << endl << "Valore dell'integrale  calcolato con " << 2* N << " step : " << fixed << setprecision(-floor(log10(err)))<< i_S->get_int() << endl; 
     cout << "I valori per N da 2 a " << 2*N << " si possono trovare nel file <risultati.txt>" << endl;
     c.SetLogy();
     c.SetLogx();
@@ -84,14 +83,3 @@ int main(int argc, char** argv) {
     return 0; 
 }
 
-
-
-int cifre_sig(double epsilon){
-    int c=0;
-    while(epsilon<1){
-        epsilon=epsilon*10;
-        c++;
-    }
-    return c;
-
-}

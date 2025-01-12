@@ -20,7 +20,6 @@
 #include "TF1.h"
 
 
-#include "gen_rand.h"
 #include "prisma.h"
 using namespace std;
 

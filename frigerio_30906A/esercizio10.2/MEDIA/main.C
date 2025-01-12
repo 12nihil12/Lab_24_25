@@ -7,7 +7,7 @@
 #include <filesystem>
 #include <fstream>
 
-#include "gen_rand.h"
+
 #include "fun.h"
 #include "integrator.h"
 using namespace std;
@@ -27,14 +27,11 @@ int main(int argc, char** argv) {
       cout << "Cartella <int_values/> creata" << endl; 
 
   }
-  
+   
   auto * f= new myfun(); 
 
 
   auto * integral = new media(0,M_PI/2,1); 
-
-  gen_rand gen(1);
-
 
   double s=0; 
 
@@ -60,6 +57,8 @@ int main(int argc, char** argv) {
 
       double iv= integral->calc(f, N) ; 
       fileout << iv << endl; 
+
+
     }
    
     fileout.close();

@@ -24,6 +24,7 @@ double midpoint::calc(const fun * f, unsigned int N){
     }
     i_N=N; 
     i_h=(i_b - i_a)/N; 
+    i_sum=0; 
 
     for (int k=0; k< N; k++){
         i_sum= i_sum + f->eval(i_a+(0.5+k)*i_h); 
@@ -45,7 +46,6 @@ double simpson::calc(const fun * f, unsigned int N){
     i_h=(i_b - i_a)/N; 
     i_sum= 1./3*f->eval(i_a) + 1./3*f->eval(i_b); 
   
-
     float m=0.; 
     for (int k=1; k< N; k++){
 
@@ -82,7 +82,7 @@ double trapezi::calc(const fun * f, double & epsilon){
         cout << "La precisione inserita: " << epsilon << " non è valida." << endl; 
         throw 11; 
     }else if( epsilon < 1e-13){ //max precision before weirdness happens
-        cout << "(La massima precisione possibile è " << 1e-11  <<")" << endl; 
+        cout << "(La massima precisione possibile è " << 1e-13  <<")" << endl; 
         epsilon=1e-13;  
     }
 

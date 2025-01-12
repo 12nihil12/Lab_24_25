@@ -70,6 +70,8 @@ int main(int argc, char** argv) {
     
       x= eq->step(x,t,oam,h); 
       t=t+h; 
+      graph_x_t.SetPoint(k,t,x[0]); 
+
       
       k++; 
     } while(t <70);

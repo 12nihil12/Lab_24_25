@@ -34,20 +34,20 @@ class integrator {
 class media: public integrator{
 
     public: 
-        media (double a, double b, unsigned int seed): integrator( a, b ) { i_gen = new gen_rand(seed);}; 
+        media (double a, double b, unsigned int seed): integrator( a, b ) ,i_gen (seed) {;};
         virtual double calc(const fun * f,unsigned int N) override; 
     private: 
-        gen_rand * i_gen; 
+        gen_rand i_gen; 
 };
 
 class hitormiss: public integrator{
 
     public: 
-        hitormiss (double a, double b, unsigned int seed): integrator( a, b ) { i_gen = new gen_rand(seed);}; 
+        hitormiss (double a, double b, unsigned int seed): integrator( a, b ), i_gen (seed){;}; 
         virtual double calc(const fun * f,unsigned int N) override {cout << "Cannot implement this method. Try calc(const fun * f,unsigned int N, double f_max)"<<endl;throw -1;}
         double calc(const fun * f,unsigned int N,double f_max); 
     private: 
-        gen_rand * i_gen; 
+        gen_rand i_gen; 
 };
 
 

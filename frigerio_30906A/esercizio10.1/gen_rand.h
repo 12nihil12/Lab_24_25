@@ -85,7 +85,7 @@ double gen_rand::AR(double med, double s){
         t= rand(); 
         y=G*t;
         N++;
-        if( N>1000){
+        if( N>10000){
             cout << "Numero massimo di tentativi raggiunto."<< endl;
             throw 13;
         }

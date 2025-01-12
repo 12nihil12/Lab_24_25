@@ -8,7 +8,6 @@
 
 using namespace std; 
 
-
 inline bool check(){
     char ans; 
      cout << "Warning: this action may result in unexpected bad behavior. Continue? [Y/n]" << endl; 
@@ -25,14 +24,14 @@ class gen_rand{
     public: 
 
 
-    inline gen_rand(unsigned int seed){ i_seed=seed; i_a=A; i_c=C; i_m=pow(2,31); }
+    gen_rand(unsigned int seed){ i_seed=seed; i_a=A; i_c=C; i_m=pow(2,31); }
 
-   
-    inline void SetA(unsigned int a) { if(!check()){return;} ; i_a=a;}
-    inline void SetC(unsigned int c) { if(!check()){return;} ; i_c=c;}
-    inline void SetM(unsigned int m) { if(!check()){return;} ; i_m=m;}
 
-    inline double rand(){i_seed=(i_a*i_seed + i_c)%i_m; return double((i_a*i_seed + i_c)%i_m)/i_m; }; 
+    void SetA(unsigned int a) { if(!check()){return;} ; i_a=a;}
+    void SetC(unsigned int c) { if(!check()){return;} ; i_c=c;}
+    void SetM(unsigned int m) { if(!check()){return;} ; i_m=m;}
+
+    double rand(){i_seed=(i_a*i_seed + i_c)%i_m; return double((i_a*i_seed + i_c)%i_m)/i_m; }; 
     inline double unif (double a, double b); 
     inline double esp(double l);
     inline double gauss(double med, double s); 
@@ -45,7 +44,7 @@ class gen_rand{
 }; 
 
  
-inline double gen_rand::unif(double a, double b){
+ double gen_rand::unif(double a, double b){
 
 
         double r= rand(); 
@@ -55,14 +54,14 @@ inline double gen_rand::unif(double a, double b){
         return min(a,b) + r*fabs(a-b); 
     }
 
-inline double gen_rand::esp(double l){
+ double gen_rand::esp(double l){
         double u= rand(); 
         double v =- 1/l*log(1-u); 
         return v; 
 }
 
 
-inline double gen_rand::gauss(double med, double s){
+ double gen_rand::gauss(double med, double s){
         double u= rand(); 
         double t= rand(); 
 
@@ -70,7 +69,7 @@ inline double gen_rand::gauss(double med, double s){
         return med+x*s; 
 }
 
-inline double gen_rand::AR(double med, double s){
+ double gen_rand::AR(double med, double s){
 
   
 
@@ -90,8 +89,9 @@ inline double gen_rand::AR(double med, double s){
             t= rand(); 
             y=G*t;
             N++;
-            if( N>1000){
+            if( N>10000){
                 cout << "Maximum trials reached. Aborting"<< endl;
+                 throw 13;
             }
         }while(y>f); 
         

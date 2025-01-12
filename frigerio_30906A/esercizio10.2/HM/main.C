@@ -7,7 +7,7 @@
 #include <filesystem>
 #include <fstream>
 
-#include "gen_rand.h"
+
 #include "fun.h"
 #include "integrator.h"
 using namespace std;
@@ -32,9 +32,6 @@ int main(int argc, char** argv) {
 
 
   auto * integral = new hitormiss(0,M_PI/2,1); 
-
-  gen_rand gen(1);
-
 
   double s=0; 
 

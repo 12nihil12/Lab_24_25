@@ -21,6 +21,7 @@ double midpoint::calc(const fun * f, unsigned int N){
         cout << "Il numero di step dev'essere positivo" << endl; 
         throw 11; 
     }
+    i_sum=0; 
     i_N=N; 
     i_h=(i_b - i_a)/N; 
     for (int k=0; k< N; k++){

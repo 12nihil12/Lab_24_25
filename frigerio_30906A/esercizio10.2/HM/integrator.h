@@ -8,12 +8,12 @@ class integrator {
     public :
         integrator( double a, double b ){I_sign(a,b); i_N=0;i_sum= 0;i_integral=0; i_h=0;}; 
 
-       virtual double calc(const fun * f,unsigned int N) =0;
+        virtual double calc(const fun * f,unsigned int N) =0;
     
 
-       double get_a(){return i_a ;}
-       double get_b(){return i_b;}
-       unsigned int get_N(){return i_N;}
+        double get_a(){return i_a ;}
+        double get_b(){return i_b;}
+        unsigned int get_N(){return i_N;}
         void set_a(double a){i_a=a;I_sign(i_a,i_b);}
         void set_b(double b){i_b=b;I_sign(i_a,i_b);}
         void set_a(unsigned int N){i_N=N;}
@@ -34,30 +34,24 @@ class integrator {
 class media: public integrator{
 
     public: 
-        media (double a, double b, unsigned int seed): integrator( a, b ) { i_gen = new gen_rand(seed);}; 
-         
-
+        media (double a, double b, unsigned int seed): integrator( a, b ) ,i_gen (seed) {;};
         virtual double calc(const fun * f,unsigned int N) override; 
     private: 
-    gen_rand * i_gen; 
+        gen_rand i_gen; 
 };
 
 class hitormiss: public integrator{
 
     public: 
-        hitormiss (double a, double b, unsigned int seed): integrator( a, b ) { i_gen = new gen_rand(seed);}; 
-         
-
+        hitormiss (double a, double b, unsigned int seed): integrator( a, b ), i_gen (seed){;}; 
         virtual double calc(const fun * f,unsigned int N) override {cout << "Cannot implement this method. Try calc(const fun * f,unsigned int N, double f_max)"<<endl;throw -1;}
         double calc(const fun * f,unsigned int N,double f_max); 
     private: 
-    gen_rand * i_gen; 
+        gen_rand i_gen; 
 };
 
 
 //***//
-
-
 class midpoint: public integrator{
     public:
         midpoint(double a, double b ): integrator( a, b ) { ;}; 
@@ -88,7 +82,5 @@ class trapezi: public integrator{
         void err(){i_err=4./3*fabs(i_integral-i_sum*i_sign*i_h); }//calcola l'errore
         double i_err; //salva l'errore
 };
-
-
 
 #endif

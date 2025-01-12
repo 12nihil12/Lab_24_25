@@ -6,7 +6,7 @@ all: main.x graph.x
 main.x: main.o integrator.o
 	g++ main.o integrator.o -o main.x  
 
-main.o: main.C gen_rand.h fun.h integrator.h 
+main.o: main.C fun.h integrator.h 
 	g++ -c main.C  
 
 integrator.o: integrator.C fun.h integrator.h gen_rand.h

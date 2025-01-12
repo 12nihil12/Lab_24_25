@@ -4,7 +4,6 @@
 #include <iomanip>
 #include <exception> 
 
-#include "gen_rand.h"
 using namespace std;
 
 void integrator::I_sign( double a, double b ) {
@@ -22,10 +21,11 @@ void integrator::I_sign( double a, double b ) {
     double s=0; 
 
     for(int i=0; i <N; i++){
-        s=s+f->eval(i_gen->unif(i_a,i_b)); 
+        s=s+f->eval(i_gen.unif(i_a,i_b)); 
     }
 
-    return s/N*(i_b-i_a); 
+    i_integral=s/N*(i_b-i_a);
+    return i_integral; 
 }
 
 
@@ -35,13 +35,13 @@ double hitormiss::calc(const fun * f,unsigned int N,double f_max){
     double x,y;
 
     for(int i=0; i <N; i++){
-        x=i_gen->unif(i_a,i_b);
-        y=i_gen->unif(0,f_max);
+        x=i_gen.unif(i_a,i_b);
+        y=i_gen.unif(0,f_max);
 
         if(y<f->eval(x))N_hit++;
     }
-
-    return double(N_hit)/N*(i_b-i_a)*f_max; 
+    i_integral=double(N_hit)/N*(i_b-i_a)*f_max; 
+    return i_integral;  
 }
 
 
@@ -59,7 +59,7 @@ double midpoint::calc(const fun * f, unsigned int N){
     }
     i_N=N; 
     i_h=(i_b - i_a)/N; 
-
+    i_sum=0; 
     for (int k=0; k< N; k++){
         i_sum= i_sum + f->eval(i_a+(0.5+k)*i_h); 
     }
