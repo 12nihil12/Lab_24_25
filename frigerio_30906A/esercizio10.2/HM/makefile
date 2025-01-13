@@ -6,7 +6,7 @@ all: main.x graph.x
 main.x: main.o integrator.o
 	g++ main.o integrator.o -o main.x  
 
-main.o: main.C fun.h integrator.h 
+main.o: main.C fun.h 
 	g++ -c main.C  
 
 

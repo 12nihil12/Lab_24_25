@@ -4,7 +4,7 @@ INCS:=`root-config --cflags`
 main.x: main.o visc.o
 	g++ main.o visc.o -o main.x  ${INCS} ${LIBS}
 
-main.o: main.C gen_rand.h visc.h 
+main.o: main.C 
 	g++ -c main.C  ${INCS} ${LIBS}
 
 visc.o: visc.C visc.h gen_rand.h

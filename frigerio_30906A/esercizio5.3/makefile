@@ -18,7 +18,7 @@ punto_mat.o: punto_mat.C punto_mat.h
 	g++ punto_mat.C -c 
 
 
-main.o: main.C posizione.h particella.h campo_vett.h punto_mat.h
+main.o: main.C 
 	g++ -c main.C -o main.o ${INCS} ${LIBS}
 
 clean: 
