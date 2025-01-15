@@ -26,7 +26,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-  TGraph graph_err ;_e=A*pow(M_E,-0.01/2*t)*cos(1.15*t+phi);
+  TGraph graph_err ;
 
 
   vector <double> x_0 {1.,0.}; 
@@ -62,6 +62,7 @@ int main(int argc, char** argv) {
   }
 
 
+
   double A= sqrt(x_0[0]*x_0[0]*(1+0.01*0.01/(4*1.15*1.15)));
   double phi=-0.01/(2*1.15);
 
@@ -70,7 +71,7 @@ int main(int argc, char** argv) {
 
     
 
-  cout << endl << t << " " << err << endl;
+  cout << endl << "scostamento da soluzione esatta " << abs(err) << endl;
 
   double sv=x[0]; 
 
@@ -83,12 +84,11 @@ int main(int argc, char** argv) {
   
     x= eq->step(x,t,oam,h); 
     t=t+h; 
-    
-    _e=A*pow(M_E,-0.01/2*t)*cos(1.15*t+phi);
+ 
   
   }
 
- err=abs(x[0]-sv)*16/15; 
+ err=abs(x[0]-sv)*16./15; 
 
   cout << " | x(43 s)= " << x[0] <<  " | errore:  " << err << endl; 
 

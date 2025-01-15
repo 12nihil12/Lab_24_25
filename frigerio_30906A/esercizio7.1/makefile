@@ -14,4 +14,5 @@ integrator.o: integrator.C integrator.h fun.h
 clean: 
 	rm *.o 
 	rm main.x
+	rm *.txt
 	

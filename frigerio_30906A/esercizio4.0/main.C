@@ -5,7 +5,6 @@
 #include <iomanip>
 #include <vector>
 #include <string>
-//#include <sys/stat.h>
 #include <filesystem>
 
 #include "TH1F.h"
@@ -50,7 +49,7 @@ int main()
 
 
     for (int i=1941; i <=2023; i++){
-        string nomefile= "Data/" + to_string(i) + ".txt"; 
+        string nomefile= "TemperatureMilano/" + to_string(i) + ".txt"; 
         try{
         v=loadff<double>(nomefile.c_str());
         }catch(...){

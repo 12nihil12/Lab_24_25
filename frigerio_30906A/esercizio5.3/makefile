@@ -24,5 +24,4 @@ main.o: main.C
 clean: 
 	rm *.o 
 	rm main.x
-	rm *.pdf
 	

@@ -75,11 +75,11 @@ int main(int argc, char** argv) {
     
     oamf->set_wf(wf); 
 
-    do{
+    for(int k=0; k<(10*1./beta)/h; k++){
       x= sol->step(x,t,oamf,h);
       
       t=t+h; 
-    } while(t< 10*1./beta);
+    }
   
 
     do{  

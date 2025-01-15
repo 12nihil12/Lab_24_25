@@ -51,7 +51,6 @@ int main(int argc, char** argv) {
 
   auto * eq = new runge_kutta(x_0,0.); 
 
-  int k=0; 
   double t=0; 
   double err; 
   int c=0; int g=1; 
@@ -64,17 +63,17 @@ int main(int argc, char** argv) {
     graph_x_t.SetLineColor(kBlue);
 
     TCanvas cg; 
-    k=0; 
+   
     bool check=1; 
-    do{
+    for(int k=0;k<70/h; k++){ 
     
       x= eq->step(x,t,oam,h); 
       t=t+h; 
       graph_x_t.SetPoint(k,t,x[0]); 
 
       
-      k++; 
-    } while(t <70);
+
+    } 
 
     
       string graph_print = "graph/passo_" + to_string(h) + ".pdf"; 

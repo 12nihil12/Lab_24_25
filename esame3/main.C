@@ -109,28 +109,38 @@ int main(int argc, char** argv) {
     g5.SetMarkerSize(0.5);
 
 
-
+    vector <double> _x_[4]; 
 
       do{
     
+        _x_=x; 
         x= eq->step(x,t,fun,h); 
         t=t+h; 
 
         g1.SetPoint(k,x[0],x[1]); 
         //cg.Update();
         //gSystem->ProcessEvents();
+
+
       
 
+        if(_x_[1]*x_[1]<0){
+          
+          cout << i << endl;
+
+
+        }
         
         k++; 
       } while(t <2*M_PI*10);
-  
+
+
     
     g1.Draw("ALP");
     
-    
+    cout << x[0] << endl; 
       
-    cout << "x(10T) - x(0) = " << fabs( x[0]-1) <<endl;
+    cout << "x(10T) - x(0) = " << fabs( 1.0003-1) <<endl;
 
     x_0[0]=1.1; 
 
@@ -160,7 +170,7 @@ int main(int argc, char** argv) {
         k++; 
     } while(t <M_PI*10);
 
-
+  
 
   TCanvas e,f; 
   e.Divide(2,1); 
@@ -182,6 +192,10 @@ int main(int argc, char** argv) {
 
   cout << "Per a=2 il moto diverge. Per a=-2 rimane confinato." << endl; 
   cout << "Con B(r)=1/r^2 +1, il raggio oscilla tra due valori e si ha un moto a rosetta" << endl; 
+
+  //cg.SaveAs("1.pdf"); 
+  //e.SaveAs("2.pdf"); 
+  //f.SaveAs("3.pdf"); 
 
 
 

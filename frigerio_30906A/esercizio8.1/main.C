@@ -27,7 +27,6 @@ int main(int argc, char** argv) {
 
 
 
-
   cout<< "Sto controllando l'esistenza della cartella <graph/>" << endl; 
 
   if(!filesystem::create_directory("graph")){
@@ -36,7 +35,6 @@ int main(int argc, char** argv) {
       cout << "Cartella <graph/> creata" << endl; 
 
   }
-
 
 
   TGraph graph_err ;
@@ -52,7 +50,7 @@ int main(int argc, char** argv) {
   auto * eq = new eulero(x_0,0.); 
 
   double h;
-  int k=0; 
+
   double t=0; 
   double err; 
   int c=0; 
@@ -66,9 +64,8 @@ int main(int argc, char** argv) {
     graph_x_t.SetLineColor(kBlue);
 
     TCanvas cg; 
-    k=0; 
-
-    do{
+ 
+    for(int k=0;k<70/h; k++){ 
     
       x= eq->step(x,t,h,oam); 
       t=t+h; 
@@ -76,8 +73,8 @@ int main(int argc, char** argv) {
         
       graph_x_t.SetPoint(k,t,x[0]); 
         
-      k++; 
-    } while(t <70);
+  
+    } 
 
     
       string graph_print = "graph/passo_" + to_string(h) + ".pdf"; 
