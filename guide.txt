@@ -1,0 +1,33 @@
+
+7/10
+3.0: classi template
+3.1: vector stl
+3.2:histo root
+
+14/10
+4.0:conversione char/stringa, grafici root (con stampa), creazione cartella
+
+23/10
+5.3: eriditarietà classi
+
+28/10
+6.2: metodi virtual, parametri di default
+
+4/11
+7.1: integrazione a N fissato
+7.2: integrazione a precisione fissata (trapezi) 
+
+11/11
+8.1: eq. diff con eulero
+8.2: eq diff con runge-kutta
+8.3:periodo pendolo 
+8.4: ampiezza oscillatore forzato
+8.5: terra, rosetta, grafici dinamici
+
+25/11
+10.0: generazione random (uniforme, esponenziale, gaussiana), divisione TCanvas
+10.1: generazione random, teo limite centrale
+10.2: integrazione montecarlo, fit
+
+12.0: simulazione apparato sperimentale, TH2F (histo 2D) 
+12.1: ricerca incertezza preponderante 
