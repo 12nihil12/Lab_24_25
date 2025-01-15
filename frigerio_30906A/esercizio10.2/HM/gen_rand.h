@@ -3,8 +3,6 @@
 #include <cmath> 
 #include <iostream> 
 
-#define A 1664525
-#define C 1013904223
 
 using namespace std; 
 
@@ -24,7 +22,7 @@ class gen_rand{
     public: 
 
 
-    gen_rand(unsigned int seed){ i_seed=seed; i_a=A; i_c=C; i_m=pow(2,31); }
+    gen_rand(unsigned int seed){ i_seed=seed; i_a=1664525; i_c=1013904223; i_m=pow(2,31); }
 
 
     void SetA(unsigned int a) { if(!check()){return;} ; i_a=a;}
