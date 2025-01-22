@@ -79,7 +79,7 @@ void order(vec_doub & v){ //ordinamento array
 
 double mediana (vec_doub v){
     order(v); 
-    print("1941_riordino_dati_txt",v);
+    print("1941_riordino_dati.txt",v);
     if(v.getused()%2==0){
         return (double)(v[v.getused()/2 -1 ]+v[v.getused()/2 ])/2;
     } else {

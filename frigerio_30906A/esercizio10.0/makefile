@@ -2,12 +2,6 @@
 LIBS:=`root-config --libs`
 INCS:=`root-config --cflags`
 
-main.x: main.o 
-	g++ main.o -o main.x  ${INCS} ${LIBS}
+esercizio10.0.x: esercizio10.0.C gen_rand.h
+	g++ esercizio10.0.C -o esercizio10.0.x  ${INCS} ${LIBS}
 
-main.o: main.C gen_rand.h
-	g++ -c main.C  ${INCS} ${LIBS}
-
-clean: 
-	rm *.o 
-	rm main.x

@@ -4,9 +4,9 @@ INCS:=`root-config --cflags`
 all: main.x graph.x
 
 main.x: main.o integrator.o
-	g++ main.o integrator.o  -std=c++17 -lstdc++fs
+	g++ main.o integrator.o -o main.x  -std=c++17 -lstdc++fs
 
-main.o: main.C fun.h 
+main.o: main.C fun.h integrator.h
 	g++ -c main.C  -std=c++17 -lstdc++fs
 
 
@@ -18,5 +18,5 @@ graph.x: graph.C
 	g++ graph.C -o graph.x  ${INCS} ${LIBS}
 
 clean: 
-	rm *.o *.x 
+	rm *.o 
 	rm  -r int_values

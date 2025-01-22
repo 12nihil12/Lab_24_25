@@ -1,8 +1,8 @@
-main.x: main.o integrator.o
-	g++ main.o integrator.o -o main.x 
+esercizio7.2.x: esercizio7.2.o integrator.o
+	g++ esercizio7.2.o integrator.o -o esercizio7.2.x 
 
-main.o: main.C fun.h 
-	g++ -c main.C 
+esercizio7.2.o: esercizio7.2.C integrator.h fun.h 
+	g++ -c esercizio7.2.C 
 
 integrator.o: integrator.C integrator.h fun.h
 	g++ -c integrator.C 
@@ -10,5 +10,5 @@ integrator.o: integrator.C integrator.h fun.h
 
 clean: 
 	rm *.o 
-	rm main.x
+
 	

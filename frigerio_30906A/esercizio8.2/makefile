@@ -2,15 +2,10 @@
 LIBS:=`root-config --libs`
 INCS:=`root-config --cflags`
 
-main.x: main.o 
-	g++ main.o -o main.x  ${INCS} ${LIBS} -std=c++17 -lstdc++fs
-
-main.o: main.C fun_vet_base.h vector_operation.h eq_diff.h 
-	g++ -c main.C  ${INCS} ${LIBS} -std=c++17 -lstdc++fs
+esercizio8.2.x: esercizio8.2.C fun_vet_base.h vector_operation.h eq_diff.h 
+	g++ esercizio8.2.C  ${INCS} ${LIBS} -std=c++17 -lstdc++fs -o esercizio8.2.x 
 
 
 clean: 
-	rm main.x
-	rm *.o
 	rm -r graph
 	

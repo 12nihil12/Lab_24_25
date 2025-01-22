@@ -1,5 +1,5 @@
-main.x: main.o functions.o vec_doub.o
-	g++ main.o functions.o vec_doub.o -o main.x
+esercizio2.2.x: esercizio2.2.o functions.o vec_doub.o
+	g++ esercizio2.2.o functions.o vec_doub.o -o esercizio2.2.x
 
 vec_doub.o: vec_doub.h vec_doub.C 
 	g++ vec_doub.C -c 
@@ -7,10 +7,9 @@ vec_doub.o: vec_doub.h vec_doub.C
 functions.o: functions.h functions.C
 	g++ functions.C -c 
 
-main.o: main.C
-	g++ main.C -c 
+esercizio2.2.o: esercizio2.2.C functions.h vec_doub.h
+	g++ esercizio2.2.C -c 
 
 clean: 
-	rm main.x
 	rm *.o
 	rm *.txt
