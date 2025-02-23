@@ -1,4 +1,0 @@
--problema del tema d'esame numero due: perchè diavolo non combaciano l'errore runtime e quello come differenza con la soluzione 
--esame numero 3: dove diamine è il mio errore
--esame 4: il grafico mi sparava due punti a caso con un passo 0.001. Ho cambiato il passo a 0.002, tutto a posto. Ho fatto cose, poi rimesso il passo a 0.001, ed era andato a posto. sotto che steroidi agisce root?
-
