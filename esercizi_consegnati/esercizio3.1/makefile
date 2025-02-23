@@ -1,6 +1,5 @@
-main.x: main.C in_out.h stat.h
-	g++ main.C in_out.h stat.h -o main.x
+esercizio3.1.x: esercizio3.1.C in_out.h stat.h
+	g++ esercizio3.1.C in_out.h stat.h -o esercizio3.1.x
 
-clean: 
-	rm main.x
+clean:
 	rm *.txt

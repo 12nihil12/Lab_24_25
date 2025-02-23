@@ -1,8 +1,6 @@
 LIBS:=`root-config --libs`
 INCS:=`root-config --cflags`
 
-main.x: main.C in_out.h 
-	g++ main.C in_out.h -o main.x  ${INCS} ${LIBS}
+esercizio3.2.x: esercizio3.2.C in_out.h 
+	g++ esercizio3.2.C in_out.h -o esercizio3.2.x  ${INCS} ${LIBS}
 
-clean: 
-	rm main.x

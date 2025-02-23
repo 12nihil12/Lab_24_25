@@ -2,16 +2,16 @@ LIBS:=`root-config --libs`
 INCS:=`root-config --cflags`
 
 
-main.x: main.o integrator.o
-	g++ main.o integrator.o -o main.x ${INCS} ${LIBS}
+esercizio7.1.x: esercizio7.1.o integrator.o
+	g++ esercizio7.1.o integrator.o -o esercizio7.1.x ${INCS} ${LIBS}
 
-main.o: main.C fun.h 
-	g++ -c main.C ${INCS} ${LIBS}
+esercizio7.1.o: esercizio7.1.C fun.h integrator.h
+	g++ -c esercizio7.1.C ${INCS} ${LIBS}
 
 integrator.o: integrator.C integrator.h fun.h
 	g++ -c integrator.C 
 
 clean: 
 	rm *.o 
-	rm main.x
+	rm *.txt
 	

@@ -1,11 +1,11 @@
 LIBS:=`root-config --libs`
 INCS:=`root-config --cflags`
 
-main.x: main.C in_out.h stat.h
-	g++ main.C in_out.h stat.h -o main.x  ${INCS} ${LIBS} -std=c++17
+esercizio4.0.x: esercizio4.0.C in_out.h stat.h
+	g++ esercizio4.0.C in_out.h stat.h -o esercizio4.0.x  ${INCS} ${LIBS} -std=c++17 -lstdc++fs
+
 
 clean:
 	rm *.pdf
-	rm *.txt
-	rm main.x
+	rm Risultati.txt
 	rm -r graph
